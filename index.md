@@ -1,6 +1,4 @@
 
-@[TOC](Starbucks Offers Study)
-
 # Udacity Data Scientist Nano Degree - Capstone Project
 ![Starbucks Offer Study](https://img-blog.csdnimg.cn/20200729171851382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
 
@@ -18,19 +16,25 @@ Starbucks is wondering how they can increase the total sales revenue by providin
 ## Data Model
 Now, let's go through the data tables, so as to get an overview of the data sets. The raw dataframes will be illustrated as follows.
 1. portfolio dataframe 
+
 ![*portfolio* ](https://img-blog.csdnimg.cn/20200729171456110.png)
 2. profile dataframe
+
 ![*profile*](https://img-blog.csdnimg.cn/20200729171459631.png)
 3. transcript dataframe
+
 ![*transcript*](https://img-blog.csdnimg.cn/20200729171502175.png)
+
 ## Data preprocessing and wrangling
 
 Based on what we have seen in the previous step, there needs to be some work to prepare the data for analysis and modeling.
 For our first dataframe which is portfolio, we can see that the ‘channels’ column need some work. Why? because it contains a list, so each value in that list must have its own column. After separating each value, we will obviously need to drop the ‘channels’ column as it is no longer needed. The table will look like this:
 ![data_preparation_1](https://img-blog.csdnimg.cn/2020072922590030.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 Looks better right! what makes it even better is that we don’t have any NaN values! so on to the next one.
 For our next dataframe profile, we had some NaN and None in both ‘gender’ and ‘income’. First, we will replace the None in ‘gender’ with N/A then replace the NaN in ‘income’ with the average of income. After applying these two steps the table will look like this:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200729230027499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 It becomes much easier to check the information. Besides, the transcript dataframe contains no NaN, which is confirmed by the statistic output.
 
 ```
@@ -42,6 +46,7 @@ dtype:		int64
 ```
 But, as seen above, the ‘value’ column contains a dictionary that means we have to separate each value and drop the ‘value’ column as it is no longer needed. To see what value it holds, we use for-loop and find the keys. After iterating through the ‘value’ column we can find that we have the following keys:[‘offer id’, ‘amount’, ‘offer_id’, ‘reward’]. Our next step is to iterate over transcript table, check value column and update it, put each key in separated column, and finally delete the ‘value’ column. After applying what I’ve discussed, the table will look like this:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200729230354840.png)
+
 ## Data Analysis Result
 
 ### Uni-variate Exploration
@@ -63,15 +68,20 @@ it’s not that low, but put in mind that this is their annual income. On to the
 ```
 Our third question is, What is the most common promotion? This one was a little bit tricky as they needed to be converted to text first. After converting and encoding/decoding, I decided to show the top 3 promotion only and show only the completed promotions as they are more important. So, we got the following output:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200729231044122.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 BOGO (buy one get one free) is the most used followed be discount with a small difference. While informational came third with ~40000 difference, that’s a huge gap.
 On to the forth questions, what are the most common age group and gender? First, I decided to use age group to make it easier to deal with and read. The following code shows how I divided them:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200729231150765.png)
+
 After creating the age_group, we can start answering our question. Let’s look at what age group most customers are:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200729231350569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 It shows that the customers mainly consist of adult and elderly groups. Next the gender property is verified:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020072923161717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 According to the statistics, males are 2000 more than females. Now let’s look at our final Univariate related question, Who are the most loyal customer (most transcripts)? This might help us so we can give them more promotion to rewards their loyalty. To approach this question, we can order the ‘amount’ in descending order and get the top 10. After applying the action, we will get the following output:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200730000422251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200730000520236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 As shown above, we can see their Profile ID as each customer has a unique number, Number of Completed Offers, and the Amount. By this data, we can give them extra and unique promotions in order to reward them. Now that we have completed the univariate part, let’s move move on to next one.
 
 ### Multi-variate Exploration
@@ -81,12 +91,15 @@ As shown above, we can see their Profile ID as each customer has a unique number
 
 Let’s look at the first question, what is the most common promotion for children, teens, young adult, adult and elderly customers? Since it’s a Multivariate question we’ll use a multi bar chart. The output will be:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200730000841750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 We can observe that all of them have similar results in offer type, Transactions has the upper hand, followed by BOGO. We can also see that young adults and teens aren’t our main customer group, so we can focus on elderly and adults.
 Our second questions is, from profiles, which get more income, males or females? For this question we will ignore the N/A group because they haven’t specified their gender. Furthermore, we will use a plot called violin and use both income and gender to answer our question. The output will look like:
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200730001001414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 The graph above shows that income median (the white dot) for females (around 70k) is higher than males (around 60k) we can also see that for females the income spreads from 40k to 100k. For males most of them around 40k to 70k which close to median.
 Our third and final question is, which type of promotions each gender likes? This questions is similar to our first question, but our focus now is on gender. So, we’ll use a multi bar chart.
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200730001049604.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+
 It seems that they all share the same interest and prefer BOGO, but we can’t ignore discount and the difference between them is low.
 It looks like we have successfully covered the analysis part. Now, we will focus and machine learning and applying different models.
 
@@ -118,6 +131,7 @@ The model theories involved in the verification process are:
 
 ## Performance of Different Modelling Theories
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200730002153981.png)
+
 Based on the above table, we can see that we’ve scored 100% accuracy in the training and testing datasets on 4 models. To avoid overfitting, I will choose Logistic Regression since it got good results 80.5% on training and 92.8% on testing datasets. Logistic Regression is better used here since we have few binomial outcomes. It's also good here because we have a decent amount of data to work with. 
 
 ## Model Improvement
