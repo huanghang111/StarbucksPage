@@ -1,6 +1,3 @@
-layout: page
-title: "blog page"
-permalink: /blogPage/
 
 @[TOC](Starbucks Offers Study)
 
