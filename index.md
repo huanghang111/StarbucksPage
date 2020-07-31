@@ -1,5 +1,7 @@
 
 # Udacity Data Scientist Nano Degree - Capstone Project
+# Starbucks Customers Offer Study
+
 ![Starbucks Offer Study](./images/Starbucks_Logo_ab_2011.png)
 
 ## Project Introduction
