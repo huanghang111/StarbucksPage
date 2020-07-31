@@ -1,12 +1,12 @@
 
 # Udacity Data Scientist Nano Degree - Capstone Project
-![Starbucks Offer Study](https://img-blog.csdnimg.cn/20200729171851382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5naGFuZzExMQ==,size_16,color_FFFFFF,t_70)
+![Starbucks Offer Study](./images/Starbucks_Logo_ab_2011.png)
 
 ## Project Introduction
 This data set contains simulated data that mimics customer behavior on the Starbucks rewarding system in their mobile application. Once every few days, Starbucks sends out an offer to users of the mobile app. The message can be an advertisement for a drink or an actual offer such as a discount or BOGO (buy one get one free). Some users might not receive any offer during certain weeks. We are going to analyze three file:
 1. portfolio: containing offer ids and meta data about each offer (duration, type, etc.). 10 rows, 6 columns.
- 2. profile: demographic data for each customer. 17000 rows, 5 columns.
- 3. transcript: records for transactions, offers received, offers viewed, and offers completed. 306534 rows, 4 columns.
+2. profile: demographic data for each customer. 17000 rows, 5 columns.
+3. transcript: records for transactions, offers received, offers viewed, and offers completed. 306534 rows, 4 columns.
 
 The process of our analysis will be by the following step: Define our Business question, understanding the data sets, Data preparation and wrangling, analyze the data, model the data, compare model performance, and finally selecting one model and improving it.
 
